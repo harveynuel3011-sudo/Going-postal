@@ -23,7 +23,6 @@ body {
   position: relative;
 }
 
-/* STATIC NOISE OVERLAY */
 body::before {
   content: '';
   position: fixed;
@@ -42,7 +41,6 @@ body::before {
   z-index: -1;
 }
 
-/* HEADER */
 header {
   display: flex !important;
   flex-direction: column !important;
@@ -115,7 +113,6 @@ h1 {
   box-shadow: 0 0 20px rgba(139,0,0,0.8);
 }
 
-/* FILTERS */
 .filters {
   display: flex;
   justify-content: center;
@@ -142,7 +139,6 @@ h1 {
   box-shadow: 0 0 15px var(--accent);
 }
 
-/* GRID */
 #gun-grid {
   flex: 1;
   display: grid;
@@ -154,7 +150,6 @@ h1 {
   width: 100%;
 }
 
-/* CARD */
 .card {
   background: var(--card);
   border: 1px solid #222;
@@ -252,7 +247,6 @@ h1 {
   transform: scale(0.95);
 }
 
-/* MODAL */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -422,7 +416,6 @@ footer p:last-child {
   font-weight: bold;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
   #cart {
