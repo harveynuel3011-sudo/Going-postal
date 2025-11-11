@@ -1,8 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* CACHE BUSTER: DELETE THIS LINE IF YOU SEE IT */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --bg: #0a0a0a;
@@ -13,6 +10,7 @@
   --blood-red: #8b0000;
   --flame-orange: #ff6600;
   --flame-yellow: #ffaa00;
+  --flame-red: #ff1100;
   font-family: 'Courier New', monospace;
 }
 
@@ -26,7 +24,7 @@ body {
   overflow-x: hidden;
 }
 
-
+/* CHAOTIC BURSTING FLAMES - AGGRESSIVE VERSION */
 body::before {
   content: '';
   position: fixed;
@@ -35,50 +33,41 @@ body::before {
   width: 200%;
   height: 200%;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(255,0,51,0.2) 0%, transparent 30%),
-    radial-gradient(circle at 80% 80%, rgba(255,102,0,0.2) 0%, transparent 35%),
-    radial-gradient(circle at 50% 20%, rgba(255,170,0,0.15) 0%, transparent 40%),
-    radial-gradient(circle at 90% 30%, rgba(255,0,0,0.25) 0%, transparent 25%),
-    radial-gradient(circle at 10% 90%, rgba(255,68,0,0.15) 0%, transparent 45%);
-  animation: chaoticFlames 6s ease-in-out infinite;
+    radial-gradient(circle at 30% 40%, var(--flame-red) 0%, transparent 25%),
+    radial-gradient(circle at 70% 60%, var(--flame-orange) 0%, transparent 30%),
+    radial-gradient(circle at 50% 80%, var(--flame-yellow) 0%, transparent 35%),
+    radial-gradient(circle at 90% 20%, var(--flame-red) 0%, transparent 20%),
+    radial-gradient(circle at 10% 70%, var(--flame-orange) 0%, transparent 40%);
+  animation: chaoticFlames 4s ease-in-out infinite;
   pointer-events: none;
   z-index: -2;
+  filter: blur(1px);
 }
 
 @keyframes chaoticFlames {
   0%, 100% { 
     transform: scale(1) rotate(0deg); 
-    opacity: 0.6; 
-    filter: blur(2px);
+    opacity: 0.8; 
   }
-  15% { 
-    transform: scale(1.4) rotate(3deg); 
-    opacity: 0.9; 
-    filter: blur(1px);
-  }
-  30% { 
-    transform: scale(1.1) rotate(-2deg); 
-    opacity: 0.7; 
-    filter: blur(3px);
-  }
-  45% { 
-    transform: scale(1.6) rotate(1deg); 
+  20% { 
+    transform: scale(1.5) rotate(5deg); 
     opacity: 1; 
-    filter: blur(0px);
+  }
+  40% { 
+    transform: scale(1.2) rotate(-3deg); 
+    opacity: 0.85; 
   }
   60% { 
-    transform: scale(1.2) rotate(-1deg); 
-    opacity: 0.8; 
-    filter: blur(2px);
+    transform: scale(1.8) rotate(2deg); 
+    opacity: 1; 
   }
-  75% { 
-    transform: scale(1.5) rotate(2deg); 
-    opacity: 0.95; 
-    filter: blur(1px);
+  80% { 
+    transform: scale(1.3) rotate(-1deg); 
+    opacity: 0.9; 
   }
 }
 
-
+/* STATIC NOISE OVERLAY */
 body::after {
   content: '';
   position: fixed;
@@ -97,7 +86,7 @@ body::after {
   z-index: -1;
 }
 
-
+/* HEADER */
 header {
   display: flex !important;
   flex-direction: column !important;
@@ -107,31 +96,31 @@ header {
   position: relative !important;
   padding: 2rem 1rem !important;
   border-bottom: 2px solid var(--accent);
-  background: rgba(10,10,10,0.9);
+  background: rgba(10,10,10,0.85);
   backdrop-filter: blur(5px);
 }
 
 #logo {
   display: block !important;
   margin: 0 auto 0.5rem auto !important;
-  width: 100px;
-  height: 100px;
-  border: 2px solid var(--accent);
+  width: 110px;
+  height: 110px;
+  border: 3px solid var(--accent);
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255,0,51,0.4);
+  box-shadow: 0 0 25px rgba(255,0,51,0.6);
 }
 
 h1 {
-  font-size: 2.5rem;
-  letter-spacing: 4px;
+  font-size: 3rem;
+  letter-spacing: 6px;
   color: var(--accent);
-  text-shadow: 0 0 5px var(--glitch), 0 0 15px var(--flame-orange);
-  animation: glitch-flicker 3s infinite;
+  text-shadow: 0 0 5px var(--glitch), 0 0 20px var(--flame-orange);
+  animation: glitch-flicker 2s infinite;
 }
 
 @keyframes glitch-flicker {
-  0%, 100% { opacity: 1; text-shadow: 0 0 5px var(--glitch); }
-  50% { opacity: 0.85; text-shadow: 0 0 10px var(--flame-yellow); }
+  0%, 100% { opacity: 1; text-shadow: 0 0 5px var(--glitch), 0 0 10px var(--flame-red); }
+  50% { opacity: 0.8; text-shadow: 0 0 10px var(--flame-yellow); }
 }
 
 .tagline {
@@ -146,75 +135,78 @@ h1 {
   top: 30px !important;
   right: 30px !important;
   background: var(--blood-red);
-  padding: 12px 24px;
+  padding: 15px 30px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s;
   font-weight: bold;
-  box-shadow: 0 0 15px rgba(139,0,0,0.5);
+  box-shadow: 0 0 20px rgba(139,0,0,0.7);
+  font-size: 1.1em;
 }
 
 #cart:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(139,0,0,0.8);
+  box-shadow: 0 0 25px rgba(139,0,0,0.9);
 }
 
-
+/* FILTERS */
 .filters {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
   padding: 30px;
   flex-wrap: wrap;
-  background: rgba(0,0,0,0.5);
-  border-bottom: 1px solid var(--accent);
+  background: rgba(0,0,0,0.6);
+  border-bottom: 1px solid var(--flame-orange);
 }
 
 .filter-btn {
-  background: rgba(255,0,51,0.1);
-  border: 1px solid var(--accent);
+  background: rgba(255,0,51,0.2);
+  border: 2px solid var(--accent);
   color: var(--glitch);
-  padding: 12px 25px;
+  padding: 15px 30px;
   cursor: pointer;
   transition: all 0.3s;
   font-family: inherit;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-size: 1.1em;
 }
 
 .filter-btn:hover, .filter-btn.active {
   background: var(--accent);
   color: var(--bg);
-  box-shadow: 0 0 15px var(--accent);
+  box-shadow: 0 0 20px var(--accent);
+  border-color: var(--flame-yellow);
 }
 
 /* GRID */
 #gun-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
 
-
+/* CARD */
 .card {
   background: var(--card);
-  border: 1px solid #222;
+  border: 2px solid #222;
   border-radius: 6px;
   overflow: hidden;
   transition: transform .2s, box-shadow .2s;
   position: relative;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(255,0,51,0.1);
+  box-shadow: 0 0 15px rgba(255,0,51,0.2);
 }
 
 .card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 0 25px rgba(255,0,51,0.4);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 30px rgba(255,102,0,0.6);
   border-color: var(--flame-orange);
 }
 
@@ -235,7 +227,7 @@ h1 {
 
 .card img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
   border-bottom: 2px solid var(--accent);
   transition: transform 0.5s;
@@ -251,14 +243,14 @@ h1 {
 }
 
 .info h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: .5rem;
   color: var(--glitch);
   letter-spacing: 1px;
 }
 
 .price {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--accent);
   margin-bottom: .5rem;
   font-weight: bold;
@@ -266,7 +258,7 @@ h1 {
 
 .specs {
   list-style: none;
-  font-size: .85rem;
+  font-size: .9rem;
   line-height: 1.4;
   color: #aaa;
 }
@@ -278,7 +270,7 @@ h1 {
 
 .buy-btn {
   width: 100%;
-  padding: 15px;
+  padding: 18px;
   background: linear-gradient(90deg, var(--blood-red) 0%, #a52a2a 100%);
   border: none;
   color: white;
@@ -289,18 +281,19 @@ h1 {
   transition: all 0.3s;
   margin-top: 15px;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
+  font-size: 1.1em;
 }
 
 .buy-btn:hover {
   background: linear-gradient(90deg, #a52a2a 0%, var(--blood-red) 100%);
-  box-shadow: 0 0 20px rgba(139,0,0,0.6);
+  box-shadow: 0 0 25px rgba(139,0,0,0.7);
 }
 
 .buy-btn:active {
   transform: scale(0.95);
 }
 
-
+/* MODAL */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -332,7 +325,7 @@ h1 {
   max-height: 85vh;
   overflow-y: auto;
   padding: 30px;
-  box-shadow: 0 0 50px rgba(255,0,51,0.6);
+  box-shadow: 0 0 50px rgba(255,0,51,0.8);
 }
 
 .modal-close {
@@ -358,6 +351,7 @@ h1 {
   margin-bottom: 20px;
   letter-spacing: 3px;
   text-align: center;
+  text-shadow: 0 0 10px var(--flame-orange);
 }
 
 #modal-body img {
@@ -454,7 +448,7 @@ h1 {
   box-shadow: 0 0 30px rgba(139,0,0,0.8);
 }
 
-
+/* FOOTER */
 footer {
   text-align: center;
   padding: 1.5rem;
@@ -470,7 +464,7 @@ footer p:last-child {
   font-weight: bold;
 }
 
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
   #cart {
