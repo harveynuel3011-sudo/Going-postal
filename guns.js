@@ -187,7 +187,6 @@ function showModal(gun) {
   modal.style.display = 'block';
 }
 
-// Close modal
 document.querySelector('.modal-close').onclick = function() {
   document.getElementById('modal-overlay').style.display = 'none';
 };
@@ -222,7 +221,6 @@ function addToCart(name) {
   setTimeout(() => cartEl.style.animation = '', 500);
 }
 
-// Add pulse animation
 const style = document.createElement('style');
 style.textContent = `
   @keyframes pulse {
@@ -233,7 +231,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Initialize
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', function() {
