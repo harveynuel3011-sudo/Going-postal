@@ -2,31 +2,31 @@ const guns = [
   {
     name: "FN FAL",
     price: "$2 400",
-    img: "https://i.imgur.com/8Qa8K6X.png",
+    img: "https://i.imgur.com/20h9YMl.jpeg",
     specs: ["Caliber: 7.62×51mm NATO", "Weight: 4.3 kg", "Mag: 20-rnd", "RoF: 650 rpm"]
   },
   {
     name: "HK416",
     price: "$2 950",
-    img: "https://i.imgur.com/8Qa8K6X.png",
+    img: "https://i.imgur.com/IaIfnJF.jpeg",
     specs: ["Caliber: 5.56×45mm NATO", "Weight: 3.5 kg", "Mag: 30-rnd", "RoF: 850 rpm"]
   },
   {
     name: "USAS-12",
     price: "$3 100",
-    img: "https://i.imgur.com/8Qa8K6X.png",
+    img: "https://i.imgur.com/Y4tXZK4.jpeg",
     specs: ["Caliber: 12-gauge", "Weight: 4.7 kg", "Mag: 10-rnd drum", "RoF: 360 rpm"]
   },
   {
     name: "M16A1",
     price: "$1 950",
-    img: "https://i.imgur.com/8Qa8K6X.png",
+    img: "https://i.imgur.com/KI5JJ0Y.jpeg",
     specs: ["Caliber: 5.56×45mm NATO", "Weight: 3.4 kg", "Mag: 20-rnd", "RoF: 700 rpm"]
   },
   {
     name: "MP5K",
     price: "$1 750",
-    img: "https://i.imgur.com/8Qa8K6X.png",
+    img: "https://i.imgur.com/taEV1tk.jpeg",
     specs: ["Caliber: 9×19mm", "Weight: 2.0 kg", "Mag: 30-rnd", "RoF: 900 rpm"]
   }
 ];
