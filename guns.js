@@ -2,7 +2,7 @@ const guns = [
   {
     name: "FN FAL",
     price: "$2 400",
-    img: "https://i.imgur.com/EOLN4nO.png",
+    img: "https://i.imgur.com/6myYaba.png",
     category: "rifle",
     fullName: "FN FAL 7.62mm Battle Rifle",
     description: "The 'Right Arm of the Free World'—battle-tested across 90+ countries. This 7.62mm beast delivers one-shot stopping power at extended ranges. Preferred by mercenary units for its reliability in desert and jungle conditions.",
@@ -25,7 +25,7 @@ const guns = [
   {
     name: "HK416",
     price: "$2 950",
-    img: "https://i.imgur.com/ASH96RK.png",
+    img: "https://i.imgur.com/EOLN4nO.png",
     category: "rifle",
     fullName: "Heckler & Koch HK416 5.56mm Assault Rifle",
     description: "The operator's choice. Delta Force and DEVGRU's preferred CQB platform. Short-stroke piston system runs cleaner than any direct-impingement rifle. Cold hammer-forged barrel delivers sub-MOA accuracy.",
@@ -48,7 +48,7 @@ const guns = [
   {
     name: "USAS-12",
     price: "$3 100",
-    img: "https://i.imgur.com/FTPo4CX.png",
+    img: "https://i.imgur.com/EApk2lQ.png",
     category: "shotgun",
     fullName: "USAS-12 12-Gauge Automatic Shotgun",
     description: "The room-clearing monster. This full-auto 12-gauge shreds barriers, vehicles, and anything stupid enough to be in front of it. Drum-fed devastation for close-quarters combat.",
@@ -71,7 +71,7 @@ const guns = [
   {
     name: "M16A1",
     price: "$1 950",
-    img: "https://i.imgur.com/hsoXXim.png",
+    img: "https://i.imgur.com/vsM8SzP.png",
     category: "rifle",
     fullName: "Colt M16A1 5.56mm Assault Rifle",
     description: "Vietnam legend. The rifle that started the 5.56mm revolution. Lightweight, accurate, and deadly when maintained. Chrome chamber solved the original reliability nightmares.",
@@ -94,7 +94,7 @@ const guns = [
   {
     name: "MP5K",
     price: "$1 750",
-    img: "https://i.imgur.com/LTUkMCN.png",
+    img: "https://i.imgur.com/Q4s6Gi5.png",
     category: "smg",
     fullName: "Heckler & Koch MP5K 9mm Submachine Gun",
     description: "The ultimate PDW. Compact enough for briefcase carry, fast enough for room-clearing. Roller-delayed blowback delivers SMG accuracy in a pistol-sized package. CIA favorite.",
@@ -118,7 +118,7 @@ const guns = [
   {
     name: "AK-12",
     price: "$2 800",
-    img: "https://i.imgur.com/8klRdJM.png",
+    img: "https://i.imgur.com/RdKtcq0.png",
     category: "rifle",
     fullName: "Kalashnikov AK-12 5.45mm Assault Rifle",
     description: "Russia's answer to the AR-15. Modernized AK platform with Picatinny rails, improved ergonomics, and balanced recoil system. Proven in Syrian field trials. Accepts standard AK-74 mags and new 60-round casket magazines.",
@@ -141,7 +141,7 @@ const guns = [
   {
     name: "MK14 EBR",
     price: "$4 200",
-    img: "https://i.imgur.com/mv3NBN4.png",
+    img: "https://i.imgur.com/ASH96RK.png",
     category: "rifle",
     fullName: "Mk 14 Enhanced Battle Rifle 7.62mm",
     description: "The designated marksman's hammer. Navy SEALs' choice for Afghanistan's mountains. Turns a squad-level rifle into a precision engagement weapon capable of reaching out to 800m while maintaining full-auto capability for emergency situations.",
@@ -164,7 +164,7 @@ const guns = [
   {
     name: "P90",
     price: "$2 150",
-    img: "https://i.imgur.com/fJWyJmD.png",
+    img: "https://i.imgur.com/FTPo4CX.png",
     category: "smg",
     fullName: "FN P90 5.7×28mm Personal Defense Weapon",
     description: "The future from 1990. Top-mounted 50-round magazine feeds horizontally into this space-age PDW. Compact profile fits vehicle crews and VIP protection details. SS190 AP ammo defeats standard body armor at 200m.",
@@ -187,7 +187,7 @@ const guns = [
   {
     name: "KRISS Vector",
     price: "$2 450",
-    img: "https://i.imgur.com/ut1a1Ro.png",
+    img: "https://i.imgur.com/fJWyJmD.png",
     category: "smg",
     fullName: "KRISS Vector .45 ACP Submachine Gun",
     description: "Recoil-reduction revolution. Super V system redirects recoil energy down and away, allowing .45 ACP fire with 9mm controllability. .45 caliber stopping power without the traditional recoil penalty. Modern polymer construction.",
@@ -210,7 +210,7 @@ const guns = [
   {
     name: "MP40",
     price: "$1 850",
-    img: "https://i.imgur.com/3sk8ELO.png",
+    img: "https://i.imgur.com/LTUkMCN.png",
     category: "smg",
     fullName: "MP40 9mm Submachine Gun",
     description: "The Kraut classic. Sturmgeschütz der Infanterie. Open-bolt simplicity that functioned from Stalingrad to Normandy. All-stamp steel construction survived mud, snow, and sand. Collector value increasing yearly.",
@@ -233,7 +233,7 @@ const guns = [
   {
     name: "PPSh-41",
     price: "$1 250",
-    img: "https://i.imgur.com/vsM8SzP.png",
+    img: "https://i.imgur.com/hsoXXim.png",
     category: "smg",
     fullName: "PPSh-41 7.62×25mm Submachine Gun",
     description: "The burp gun. Soviet simplicity at its finest—crude but effective. 71-round drum magazine provided overwhelming suppressive fire. Machined receiver and chrome-lined barrel lasted decades in third-world arsenals.",
@@ -256,7 +256,7 @@ const guns = [
   {
     name: "Saiga-12K",
     price: "$1 650",
-    img: "https://i.imgur.com/Q4s6Gi5.png",
+    img: "https://i.imgur.com/8klRdJM.png",
     category: "shotgun",
     fullName: "Saiga-12K 12-Gauge Combat Shotgun",
     description: "Kalashnikov's scattergun. AK action scaled up to 12-gauge reliability. Semi-auto firepower with 10-round box magazines. Short-barreled K-variant perfect for vehicle entry. Runs everything from birdshot to magnum slugs.",
@@ -279,7 +279,7 @@ const guns = [
   {
     name: "DP-12",
     price: "$1 350",
-    img: "https://i.imgur.com/EApk2lQ.png",
+    img: "https://i.imgur.com/mv3NBN4.png",
     category: "shotgun",
     fullName: "Standard Manufacturing DP-12 12-Gauge Double Barrel Pump Shotgun",
     description: "Double-barrel pump innovation. Two independent tubes provide 16 rounds of capacity. Twin triggers allow immediate follow-up shots. Bullpup design keeps overall length compact despite 18-inch barrels.",
@@ -302,7 +302,7 @@ const guns = [
   {
     name: "Winchester 1897",
     price: "$1 100",
-    img: "https://i.imgur.com/6myYaba.png",
+    img: "https://i.imgur.com/ut1a1Ro.png",
     category: "shotgun",
     fullName: "Winchester Model 1897 12-Gauge Trench Gun",
     description: "The original trench sweeper. Slam-fire capable pump action terrorized German trenches in WWI. External hammer and solid frame lasted 125 years of production. Collector piece that still functions flawlessly in combat.",
@@ -325,7 +325,7 @@ const guns = [
   {
     name: "SPR310",
     price: "$650",
-    img: "https://i.imgur.com/RdKtcq0.png",
+    img: "https://i.imgur.com/3sk8ELO.png",
     category: "shotgun",
     fullName: "Savage SPR310 12-Gauge Double Barrel Shotgun",
     description: "The budget breaker. Side-by-side simplicity for the frugal operator. No gas system to fail, no magazine to jam. Break-action reliability for entry teams on a budget. Chrome-lined barrels resist corrosion in jungle environments.",
