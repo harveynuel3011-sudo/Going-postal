@@ -1,3 +1,4 @@
+/* Remove unnecessary !important flags and improve performance */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -23,94 +24,65 @@ body {
   overflow-x: hidden;
 }
 
-/* CHAOTIC BURSTING FLAMES - AGGRESSIVE VERSION */
+/* Optimized flame animation with reduced complexity */
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
   background: 
     radial-gradient(circle at 30% 40%, var(--flame-red) 0%, transparent 25%),
     radial-gradient(circle at 70% 60%, var(--flame-orange) 0%, transparent 30%),
-    radial-gradient(circle at 50% 80%, var(--flame-yellow) 0%, transparent 35%),
-    radial-gradient(circle at 90% 20%, var(--flame-red) 0%, transparent 20%),
-    radial-gradient(circle at 10% 70%, var(--flame-orange) 0%, transparent 40%);
-  animation: chaoticFlames 4s ease-in-out infinite;
+    radial-gradient(circle at 50% 80%, var(--flame-yellow) 0%, transparent 35%);
+  animation: chaoticFlames 6s ease-in-out infinite;
   pointer-events: none;
   z-index: -2;
   filter: blur(1px);
+  will-change: transform;
 }
 
 @keyframes chaoticFlames {
-  0%, 100% { 
-    transform: scale(1) rotate(0deg); 
-    opacity: 0.8; 
-  }
-  20% { 
-    transform: scale(1.5) rotate(5deg); 
-    opacity: 1; 
-  }
-  40% { 
-    transform: scale(1.2) rotate(-3deg); 
-    opacity: 0.85; 
-  }
-  60% { 
-    transform: scale(1.8) rotate(2deg); 
-    opacity: 1; 
-  }
-  80% { 
-    transform: scale(1.3) rotate(-1deg); 
-    opacity: 0.9; 
-  }
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  50% { transform: scale(1.3) rotate(2deg); opacity: 0.9; }
 }
 
-/* STATIC NOISE OVERLAY */
 body::after {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: repeating-linear-gradient(
-    0deg,
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0.15) 1px,
-    transparent 1px,
-    transparent 2px
+    0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px
   );
-  pointer-events: none;
-  z-index: -1;
+  pointer-events: none; z-index: -1;
 }
 
-/* HEADER */
 header {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  position: relative !important;
-  padding: 2rem 1rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 2rem 1rem;
   border-bottom: 2px solid var(--accent);
   background: rgba(10,10,10,0.85);
   backdrop-filter: blur(5px);
 }
 
 #logo {
-  display: block !important;
-  margin: 0 auto 0.5rem auto !important;
-  width: 110px;
-  height: 110px;
+  display: block;
+  margin: 0 auto 0.5rem;
+  width: 110px; height: 110px;
   border: 3px solid var(--accent);
   border-radius: 50%;
   box-shadow: 0 0 25px rgba(255,0,51,0.6);
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 6px;
   color: var(--accent);
   text-shadow: 0 0 5px var(--glitch), 0 0 20px var(--flame-orange);
@@ -129,10 +101,10 @@ h1 {
   margin-top: 10px;
 }
 
+/* Cart button - improved positioning */
 #cart {
-  position: absolute !important;
-  top: 30px !important;
-  right: 30px !important;
+  position: absolute;
+  top: 30px; right: 30px;
   background: var(--blood-red);
   padding: 15px 30px;
   border-radius: 5px;
@@ -141,14 +113,13 @@ h1 {
   font-weight: bold;
   box-shadow: 0 0 20px rgba(139,0,0,0.7);
   font-size: 1.1em;
+  user-select: none;
 }
-
 #cart:hover {
   transform: scale(1.1);
   box-shadow: 0 0 25px rgba(139,0,0,0.9);
 }
 
-/* FILTERS */
 .filters {
   display: flex;
   justify-content: center;
@@ -171,19 +142,21 @@ h1 {
   letter-spacing: 2px;
   font-size: 1.1em;
 }
-
 .filter-btn:hover, .filter-btn.active {
   background: var(--accent);
   color: var(--bg);
   box-shadow: 0 0 20px var(--accent);
   border-color: var(--flame-yellow);
+  outline: none;
+}
+.filter-btn:focus {
+  outline: 2px solid var(--glitch);
 }
 
-/* GRID */
 #gun-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 2rem;
   max-width: 1400px;
@@ -191,7 +164,6 @@ h1 {
   width: 100%;
 }
 
-/* CARD */
 .card {
   background: var(--card);
   border: 2px solid #222;
@@ -202,7 +174,6 @@ h1 {
   cursor: pointer;
   box-shadow: 0 0 15px rgba(255,0,51,0.2);
 }
-
 .card:hover {
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 0 30px rgba(255,102,0,0.6);
@@ -212,8 +183,7 @@ h1 {
 .card::before {
   content: 'CLASSIFIED';
   position: absolute;
-  top: 15px;
-  right: -30px;
+  top: 15px; right: -30px;
   background: var(--blood-red);
   padding: 5px 40px;
   transform: rotate(45deg);
@@ -225,14 +195,12 @@ h1 {
 }
 
 .card img {
-  width: 100%;
-  height: 200px;
+  width: 100%; height: 200px;
   object-fit: cover;
   border-bottom: 2px solid var(--accent);
   transition: transform 0.5s;
   background: #000;
 }
-
 .card:hover img {
   transform: scale(1.05);
 }
@@ -240,33 +208,28 @@ h1 {
 .info {
   padding: 1rem;
 }
-
 .info h2 {
   font-size: 1.4rem;
   margin-bottom: .5rem;
   color: var(--glitch);
   letter-spacing: 1px;
 }
-
 .price {
   font-size: 1.2rem;
   color: var(--accent);
   margin-bottom: .5rem;
   font-weight: bold;
 }
-
 .specs {
   list-style: none;
   font-size: .9rem;
   line-height: 1.4;
   color: #aaa;
 }
-
 .specs li::before {
   content: '▸ ';
   color: var(--accent);
 }
-
 .buy-btn {
   width: 100%;
   padding: 18px;
@@ -282,43 +245,33 @@ h1 {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
   font-size: 1.1em;
 }
-
 .buy-btn:hover {
   background: linear-gradient(90deg, #a52a2a 0%, var(--blood-red) 100%);
   box-shadow: 0 0 25px rgba(139,0,0,0.7);
 }
-
 .buy-btn:active {
   transform: scale(0.95);
 }
 
-/* MODAL */
 .modal-overlay {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.95);
   backdrop-filter: blur(10px);
   z-index: 2000;
   animation: fadeIn 0.3s;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
 .modal-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   background: var(--card);
   border: 2px solid var(--accent);
-  border-radius: 0;
   width: 90%;
   max-width: 700px;
   max-height: 85vh;
@@ -326,18 +279,15 @@ h1 {
   padding: 30px;
   box-shadow: 0 0 50px rgba(255,0,51,0.8);
 }
-
 .modal-close {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 15px; right: 20px;
   font-size: 2.5em;
   color: var(--accent);
   cursor: pointer;
   transition: all 0.3s;
   z-index: 10;
 }
-
 .modal-close:hover {
   color: var(--glitch);
   text-shadow: 0 0 15px var(--glitch);
@@ -346,13 +296,12 @@ h1 {
 
 #modal-body h2 {
   color: var(--glitch);
-  font-size: 2.5em;
+  font-size: 2em;
   margin-bottom: 20px;
   letter-spacing: 3px;
   text-align: center;
   text-shadow: 0 0 10px var(--flame-orange);
 }
-
 #modal-body img {
   width: 100%;
   max-height: 350px;
@@ -360,72 +309,51 @@ h1 {
   border: 2px solid var(--accent);
   margin-bottom: 20px;
 }
-
 #modal-body .price {
-  font-size: 2.5em;
+  font-size: 2em;
   text-align: center;
   margin-bottom: 30px;
 }
-
 .detail-section {
   margin-bottom: 25px;
 }
-
 .detail-section h3 {
   color: var(--accent);
   margin-bottom: 15px;
-  font-size: 1.5em;
+  font-size: 1.3em;
   letter-spacing: 2px;
   border-bottom: 1px solid var(--accent);
   padding-bottom: 5px;
 }
-
-.specs li {
-  margin-bottom: 8px;
-  font-size: 1.1em;
-}
-
 .pros-cons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-top: 30px;
 }
-
 .pros, .cons {
   padding: 20px;
   border-radius: 5px;
 }
-
 .pros {
   background: rgba(0,255,255,0.1);
   border: 1px solid var(--glitch);
 }
-
 .cons {
   background: rgba(255,0,51,0.1);
   border: 1px solid var(--accent);
 }
-
 .pros h4, .cons h4 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   margin-bottom: 15px;
 }
-
-.pros h4 {
-  color: var(--glitch);
-}
-
-.cons h4 {
-  color: var(--accent);
-}
-
+.pros h4 { color: var(--glitch); }
+.cons h4 { color: var(--accent); }
 .pros li, .cons li {
   margin-left: 20px;
   margin-bottom: 8px;
   font-size: 1em;
 }
-
 .modal-buy-btn {
   width: 100%;
   padding: 20px;
@@ -438,16 +366,64 @@ h1 {
   cursor: pointer;
   transition: all 0.3s;
   margin-top: 30px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
 }
-
 .modal-buy-btn:hover {
   background: linear-gradient(90deg, #a52a2a 0%, var(--blood-red) 100%);
   box-shadow: 0 0 30px rgba(139,0,0,0.8);
 }
 
-/* FOOTER */
+/* Cart sidebar */
+.cart-sidebar {
+  display: none;
+  position: fixed;
+  top: 0; right: -350px;
+  width: 350px; height: 100vh;
+  background: var(--card);
+  border-left: 2px solid var(--accent);
+  padding: 20px;
+  z-index: 3000;
+  transition: right 0.3s;
+  overflow-y: auto;
+}
+.cart-sidebar.active {
+  right: 0;
+  display: block;
+}
+.cart-sidebar h3 {
+  color: var(--glitch);
+  margin-bottom: 20px;
+  text-align: center;
+}
+#cart-items {
+  list-style: none;
+  margin-bottom: 20px;
+}
+#cart-items li {
+  padding: 10px;
+  border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+}
+.clear-cart-btn, .checkout-btn {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.clear-cart-btn {
+  background: #333;
+  color: var(--text);
+}
+.checkout-btn {
+  background: var(--blood-red);
+  color: white;
+}
+
 footer {
   text-align: center;
   padding: 1.5rem;
@@ -456,28 +432,28 @@ footer {
   color: #555;
   margin-top: auto;
 }
-
 footer p:last-child {
   color: var(--accent);
   margin-top: 10px;
   font-weight: bold;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
   #cart {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    margin: 20px auto 0 !important;
-    display: inline-block !important;
+    position: static;
+    margin: 20px auto 0;
+    display: inline-block;
   }
   .pros-cons {
     grid-template-columns: 1fr;
   }
-  .modal-content {
-    width: 95%;
-    padding: 20px;
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+  #gun-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
   }
 }
