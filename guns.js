@@ -114,14 +114,15 @@ const guns = [
     pros: ["Ultra-compact design", "2.0 kg weight", "900 RPM rate of fire", "Roller-delayed recoil", "30-rnd mag capacity"],
     cons: ["9mm pistol caliber only", "Range limited to 100m", "Barrel too short", "Full-auto burns ammo", "Specialized CQB only"]
   },
+  // NEW FIREARMS WITH CORRECTED IMAGE URLS
   {
     name: "AK-12",
     price: "$2 800",
     img: "https://i.imgur.com/RdKtcq0.png",
     category: "rifle",
     fullName: "Kalashnikov AK-12 5.45mm Assault Rifle",
-    description: "Russia's answer to the AR-15. Modernized AK platform with Picatinny rails, improved ergonomics, and balanced recoil system. Proven in Syrian field trials.",
-    performance: "Maintains 2 MOA accuracy through 20,000-round service life. Ambidextrous controls for left-handed operators. Three-round burst mode allows controlled fire at close range.",
+    description: "Russia's answer to the AR-15. Modernized AK platform with Picatinny rails, improved ergonomics, and balanced recoil system. Proven in Syrian field trials. Accepts standard AK-74 mags and new 60-round casket magazines.",
+    performance: "Maintains 2 MOA accuracy through 20,000-round service life. Ambidextrous controls for left-handed operators. Three-round burst mode allows controlled fire at close range. Gas regulator switches between suppressed and unsuppressed flawlessly.",
     specs: {
       "Caliber": "5.45×39mm",
       "Weight": "3.5 kg (7.7 lbs) unloaded",
@@ -143,8 +144,8 @@ const guns = [
     img: "https://i.imgur.com/ASH96RK.png",
     category: "rifle",
     fullName: "Mk 14 Enhanced Battle Rifle 7.62mm",
-    description: "The designated marksman's hammer. Navy SEALs' choice for Afghanistan's mountains. Turns a squad-level rifle into a precision engagement weapon capable of reaching out to 800m.",
-    performance: "Sub-MOA accuracy with match-grade ammo. Sage chassis eliminates all flex from the original M14 platform. Quick-detach scope mount returns to zero within 0.5 MOA.",
+    description: "The designated marksman's hammer. Navy SEALs' choice for Afghanistan's mountains. Turns a squad-level rifle into a precision engagement weapon capable of reaching out to 800m while maintaining full-auto capability for emergency situations.",
+    performance: "Sub-MOA accuracy with match-grade ammo. Sage chassis eliminates all flex from the original M14 platform. Quick-detach scope mount returns to zero within 0.5 MOA. Effective against body armor at 500m with M993 AP ammo.",
     specs: {
       "Caliber": "7.62×51mm NATO",
       "Weight": "5.1 kg (11.2 lbs) unloaded",
@@ -166,8 +167,8 @@ const guns = [
     img: "https://i.imgur.com/FTPo4CX.png",
     category: "smg",
     fullName: "FN P90 5.7×28mm Personal Defense Weapon",
-    description: "The future from 1990. Top-mounted 50-round magazine feeds horizontally into this space-age PDW. Compact profile fits vehicle crews and VIP protection details.",
-    performance: "900 RPM with minimal recoil due to bore axis alignment. 50-round magazine provides overwhelming fire superiority in CQB. Integrated reflex sight is battle-proven.",
+    description: "The future from 1990. Top-mounted 50-round magazine feeds horizontally into this space-age PDW. Compact profile fits vehicle crews and VIP protection details. SS190 AP ammo defeats standard body armor at 200m.",
+    performance: "900 RPM with minimal recoil due to bore axis alignment. 50-round magazine provides overwhelming fire superiority in CQB. Integrated reflex sight is battle-proven. Ambidextrous ejection perfect for left/right transitions.",
     specs: {
       "Caliber": "5.7×28mm SS190",
       "Weight": "2.6 kg (5.7 lbs) unloaded",
@@ -346,92 +347,7 @@ const guns = [
   }
 ];
 
-
-const Cart = {
-  items: [],
-  
-  open() {
-    const modal = document.getElementById('cartModal');
-    const body = document.getElementById('cartBody');
-    modal.style.display = 'block';
-    
-    if (this.items.length === 0) {
-      body.innerHTML = '<p style="text-align:center;color:#888;padding:2rem;">CART IS EMPTY</p><div id="cartTotal" style="text-align:right;font-size:1.5em;margin:1rem 0;color:var(--accent);font-weight:bold;">TOTAL: $0</div>';
-      return;
-    }
-    
-    let total = this.items.reduce((sum, item) => sum + item.price, 0);
-    let html = '<div style="max-height:50vh;overflow-y:auto;">';
-    
-    this.items.forEach(item => {
-      html += `
-        <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}">
-          <div style="flex:1">
-            <div style="color:var(--glitch);font-weight:bold;">${item.name}</div>
-            <div style="color:var(--accent);">$${item.price.toLocaleString()}</div>
-          </div>
-          <button class="remove-item" onclick="Cart.remove(${item.id})">X</button>
-        </div>`;
-    });
-    
-    html += '</div>';
-    html += `<div id="cartTotal" style="text-align:right;font-size:1.5em;margin:1rem 0;color:var(--accent);font-weight:bold;">TOTAL: $${total.toLocaleString()}</div>`;
-    html += '<button class="buy-btn" onclick="Cart.checkout()">PROCEED TO CHECKOUT</button>';
-    
-    body.innerHTML = html;
-  },
-  
-  close() {
-    document.getElementById('cartModal').style.display = 'none';
-  },
-  
-  add(card) {
-    const name = card.querySelector('h2').textContent;
-    const gun = guns.find(g => g.name === name);
-    
-    this.items.push({
-      id: Date.now() + Math.random(),
-      name: gun.name,
-      price: parseInt(gun.price.replace(/\D/g, '')),
-      image: gun.img
-    });
-    
-    this.updateUI();
-    
-    
-    const cartEl = document.getElementById('cart');
-    cartEl.style.animation = 'pulse 0.5s';
-    setTimeout(() => cartEl.style.animation = '', 500);
-  },
-  
-  remove(id) {
-    this.items = this.items.filter(item => item.id !== id);
-    this.updateUI();
-    this.open();
-  },
-  
-  updateUI() {
-    document.getElementById('cart-count').textContent = this.items.length;
-  },
-  
-  checkout() {
-    alert(this.items.length ? 'CHECKOUT DISABLED - DEMO MODE' : 'CART IS EMPTY');
-  }
-};
-
-
-const Modal = {
-  open(content) {
-    document.getElementById('modalBody').innerHTML = content;
-    document.getElementById('productModal').style.display = 'block';
-  },
-  
-  close() {
-    document.getElementById('productModal').style.display = 'none';
-  }
-};
-
+let cart = [];
 
 function renderGuns(gunsToRender = guns) {
   const grid = document.getElementById('gun-grid');
@@ -447,7 +363,7 @@ function renderGuns(gunsToRender = guns) {
         <ul class="specs">
           ${Object.entries(g.specs).slice(0,4).map(([k,v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}
         </ul>
-        <button class="buy-btn" onclick="event.stopPropagation(); Cart.add(this.closest('.card'))">ACQUIRE ASSET</button>
+        <button class="buy-btn" onclick="event.stopPropagation(); addToCart('${g.name}')">ACQUIRE ASSET</button>
       </div>
     `;
     card.addEventListener('click', () => showModal(g));
@@ -456,7 +372,8 @@ function renderGuns(gunsToRender = guns) {
 }
 
 function showModal(gun) {
-  const modalBody = document.getElementById('modalBody');
+  const modal = document.getElementById('modal-overlay');
+  const modalBody = document.getElementById('modal-body');
   
   modalBody.innerHTML = `
     <h2>${gun.fullName || gun.name}</h2>
@@ -483,19 +400,33 @@ function showModal(gun) {
     <div class="pros-cons">
       <div class="pros">
         <h4>✓ ADVANTAGES</h4>
-        <ul>${gun.pros.map(p => `<li>${p}</li>`).join('')}</ul>
+        <ul>
+          ${gun.pros.map(p => `<li>${p}</li>`).join('')}
+        </ul>
       </div>
       <div class="cons">
         <h4>✗ DISADVANTAGES</h4>
-        <ul>${gun.cons.map(c => `<li>${c}</li>`).join('')}</ul>
+        <ul>
+          ${gun.cons.map(c => `<li>${c}</li>`).join('')}
+        </ul>
       </div>
     </div>
 
-    <button class="buy-btn" onclick="Cart.add(document.querySelector('.card')); Modal.close()">ACQUIRE ${gun.name.toUpperCase()}</button>
+    <button class="modal-buy-btn" onclick="addToCart('${gun.name}'); document.getElementById('modal-overlay').style.display='none'">ACQUIRE ${gun.name.toUpperCase()}</button>
   `;
   
-  Modal.open();
+  modal.style.display = 'block';
 }
+
+document.querySelector('.modal-close').onclick = function() {
+  document.getElementById('modal-overlay').style.display = 'none';
+};
+
+document.getElementById('modal-overlay').onclick = function(e) {
+  if (e.target === this) {
+    this.style.display = 'none';
+  }
+};
 
 function filterGuns(category) {
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -512,6 +443,14 @@ function filterGuns(category) {
   }
 }
 
+function addToCart(name) {
+  cart.push(name);
+  document.getElementById('cart-count').textContent = cart.length;
+  
+  const cartEl = document.getElementById('cart');
+  cartEl.style.animation = 'pulse 0.5s';
+  setTimeout(() => cartEl.style.animation = '', 500);
+}
 
 const style = document.createElement('style');
 style.textContent = `
@@ -523,20 +462,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderGuns();
-  
+document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', function() {
       filterGuns(this.dataset.category);
     });
   });
   
-
-  window.onclick = (e) => {
-    if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('cart-modal-overlay')) {
-      e.target.style.display = 'none';
-    }
-  };
+  renderGuns();
 });
