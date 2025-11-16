@@ -1,4 +1,4 @@
-/* Remove unnecessary !important flags and improve performance */
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -24,7 +24,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Optimized flame animation with reduced complexity */
+
 body::before {
   content: '';
   position: fixed;
@@ -101,7 +101,7 @@ h1 {
   margin-top: 10px;
 }
 
-/* Cart button - improved positioning */
+
 #cart {
   position: absolute;
   top: 30px; right: 30px;
@@ -374,7 +374,7 @@ h1 {
   box-shadow: 0 0 30px rgba(139,0,0,0.8);
 }
 
-/* Cart sidebar */
+
 .cart-sidebar {
   display: none;
   position: fixed;
