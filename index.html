@@ -6,11 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <style>
- 
+
     body.homepage{ display:flex; flex-direction:column; min-height:100vh; }
-    body.homepage .filters,
-    body.homepage #gun-grid,
-    body.homepage footer{ display:none; }
+    body.homepage .shop-only{ display:none!important; }          /* hide shop parts on homepage */
 
     .hp-wrap{
       flex:1;
@@ -61,18 +59,21 @@
   </style>
 </head>
 <body class="homepage">
+  
   <header>
     <div id="logo-container"><img id="logo" src="https://i.imgur.com/qFCCq2v.jpeg" alt="Gone Postal Logo" loading="lazy"></div>
     <h1 style="font-size:clamp(3rem,8vw,5rem); letter-spacing:8px; color:var(--accent); text-shadow:0 0 10px var(--glitch),0 0 30px var(--flame-orange);">GONE POSTAL</h1>
+    <p class="tagline">Special Forces Supply • No Questions Asked</p>
+    <div id="cart" class="shop-only" onclick="showCart()">CART [<span id="cart-count">0</span>]</div>
   </header>
+
 
   <div class="hp-wrap">
     <p class="hp-desc">
-      “Look, I just shoot the packages—delivery confirmation is your problem.  
+      “Look, I just shoot the packages—delivery confirmation is <em>your</em> problem.  
       Browse the catalogue, pick your party favours, and nobody asks questions.  
       Welcome to the postal service that actually delivers.”
     </p>
-
     <button class="acquired-btn" onclick="enterShop()">ACQUIRED HANDBOOM</button>
 
     <div class="contact-card">
@@ -83,14 +84,23 @@
   </div>
 
 
-  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display:none;">
+  <div id="filters" class="filters shop-only">
+    <button class="filter-btn active" data-category="all">ALL</button>
+    <button class="filter-btn" data-category="rifle">RIFLES</button>
+    <button class="filter-btn" data-category="smg">SMG</button>
+    <button class="filter-btn" data-category="shotgun">SHOTGUN</button>
+  </div>
+
+  <main id="gun-grid" class="shop-only" aria-live="polite"></main>
+
+  <div id="modal-overlay" class="modal-overlay shop-only" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display:none;">
     <div class="modal-content">
       <span class="modal-close" aria-label="Close modal">&times;</span>
       <div id="modal-body"></div>
     </div>
   </div>
 
-  <div id="cart-sidebar" class="cart-sidebar">
+  <div id="cart-sidebar" class="cart-sidebar shop-only">
     <h3>ASSET CART</h3>
     <ul id="cart-items"></ul>
     <button onclick="clearCart()" class="clear-cart-btn">CLEAR CART</button>
@@ -98,15 +108,20 @@
   </div>
 
   <script src="guns.js"></script>
-  <script>
+  <
     function enterShop(){
-      document.body.classList.remove('homepage');
-      document.getElementById('cart').style.display='block';
-      renderGuns();
-      document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){filterGuns(this.dataset.category)}));
+      document.body.classList.remove('homepage');   // swap skin
+      document.querySelectorAll('.shop-only').forEach(el=>el.style.display=''); // reveal shop
+      renderGuns();                                 // fill catalogue
+      document.querySelectorAll('.filter-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>filterGuns(btn.dataset.category));
+      });
     }
-    document.querySelector('.modal-close').onclick=()=>document.getElementById('modal-overlay').style.display='none';
-    document.getElementById('modal-overlay').onclick=function(e){if(e.target===this)this.style.display='none'};
+
+    document.querySelector('.modal-close').onclick =
+      ()=>document.getElementById('modal-overlay').style.display='none';
+    document.getElementById('modal-overlay').onclick =
+      function(e){if(e.target===this)this.style.display='none'};
   </script>
 </body>
 </html>
