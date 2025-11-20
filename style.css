@@ -437,6 +437,19 @@ footer p:last-child {
   margin-top: 10px;
   font-weight: bold;
 }
+.banner {
+  width: 100%;
+  border-bottom: 2px solid var(--accent);
+  background: #000;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 400px;
+  object-fit: cover;
+}
 
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
