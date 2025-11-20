@@ -448,7 +448,9 @@ footer p:last-child {
   height: auto;
   display: block;
   max-height: 400px;
-  object-fit: cover;
+  object-fit: contain;  
+  background: #000;     
+}
 }
 
 @media (max-width: 768px) {
