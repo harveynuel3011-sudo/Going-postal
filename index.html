@@ -56,7 +56,7 @@
       Browse the catalogue, pick your party favours, and nobody asks questions.<br>
       Welcome to the postal service that actually delivers.”
     </p>
-    <button class="acquired-btn" onclick="enterShop()">ACQUIRED HANDBOOM</button>
+    <button class="acquired-btn" onclick="enterShop()">GIMME HANDBOOM</button>
 
     <div class="contact-card">
       <h3>CONTACTS</h3>
@@ -90,9 +90,9 @@
   <script src="guns.js"></script>
   <script>
     function enterShop(){
-      document.body.classList.remove('homepage');   // swap skin
-      document.querySelectorAll('.shop-only').forEach(el=>el.style.display=''); // reveal shop
-      renderGuns();                                 // fill catalogue
+      document.body.classList.remove('homepage');   
+      document.querySelectorAll('.shop-only').forEach(el=>el.style.display=''); 
+      renderGuns();                                 
       document.querySelectorAll('.filter-btn').forEach(btn=>
         btn.addEventListener('click',()=>filterGuns(btn.dataset.category))
       );
