@@ -449,15 +449,7 @@ footer p:last-child {
   display: block;
   max-height: 400px;
   object-fit: contain;  
-  background: #000;     
-}
-.banner-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  max-height: 400px;
-  object-fit: contain;  
-  background: #000;     
+  background: #000;      
 }
 .cart-header {
   display: flex;
