@@ -346,7 +346,6 @@ const guns = [
     cons: ["2-round capacity", "Slow reloads", "Long 45\" overall length", "No choke tubes", "Extractors only"]
   }
 ];
-
 let cart = [];
 
 function renderGuns(gunsToRender = guns) {
@@ -443,24 +442,100 @@ function filterGuns(category) {
   }
 }
 
-function addToCart(name) {
-  cart.push(name);
+
+function addToCart(gunName) {
+  const gun = guns.find(g => g.name === gunName);
+  if (!gun) return;
+  
+  cart.push({
+    id: Date.now() + Math.random(),
+    name: gun.name,
+    price: gun.price,
+    img: gun.img
+  });
+  
   document.getElementById('cart-count').textContent = cart.length;
   
   const cartEl = document.getElementById('cart');
   cartEl.style.animation = 'pulse 0.5s';
   setTimeout(() => cartEl.style.animation = '', 500);
+  
+  if (document.getElementById('cart-sidebar').classList.contains('active')) {
+    renderCart();
+  }
 }
 
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(139,0,0,0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(139,0,0,0); }
-    100% { box-shadow: 0 0 0 0 rgba(139,0,0,0); }
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  document.getElementById('cart-count').textContent = cart.length;
+  renderCart();
+}
+
+function renderCart() {
+  const cartItems = document.getElementById('cart-items');
+  cartItems.innerHTML = '';
+  
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<li style="color:#888; padding:1rem; text-align:center;">No assets acquired</li>';
+    return;
   }
-`;
-document.head.appendChild(style);
+  
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/50x50/111/00ffff?text=GUN'">
+      <div>
+        <div style="font-weight:bold; color:var(--glitch);">${item.name}</div>
+        <div style="color:var(--accent);">${item.price}</div>
+      </div>
+      <button onclick="removeFromCart('${item.id}')" class="remove-btn">REMOVE</button>
+    `;
+    cartItems.appendChild(li);
+  });
+}
+
+function showCart() {
+  const sidebar = document.getElementById('cart-sidebar');
+  sidebar.classList.toggle('active');
+  if (sidebar.classList.contains('active')) {
+    renderCart();
+  }
+}
+
+function clearCart() {
+  cart = [];
+  document.getElementById('cart-count').textContent = '0';
+  renderCart();
+}
+
+function checkout() {
+  if (cart.length === 0) {
+    alert('Cart is empty. Acquire some assets first.');
+    return;
+  }
+  
+  const modal = document.getElementById('checkout-modal');
+  modal.style.display = 'block';
+}
+
+function processPayment(method) {
+  const total = cart.reduce((sum, item) => sum + parseInt(item.price.replace(/[^0-9]/g, '')), 0);
+  const orderNumber = 'GP' + Date.now().toString().slice(-6);
+  
+  if (method === 'gcash') {
+    alert(`GCash payment selected!\n\nTotal: $${total}\nOrder #: ${orderNumber}\n\nSend payment to: 0905-166-6449\nScreenshot and email to: harveynuel3011@gmail.com`);
+  } else {
+    alert(`Cash on Delivery confirmed!\n\nTotal: $${total}\nOrder #: ${orderNumber}\n\nDelivery address will be requested via SMS. Stay armed.`);
+  }
+  
+  closeCheckout();
+  clearCart();
+}
+
+function closeCheckout() {
+  document.getElementById('checkout-modal').style.display = 'none';
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.filter-btn').forEach(button => {
@@ -468,6 +543,9 @@ document.addEventListener('DOMContentLoaded', function() {
       filterGuns(this.dataset.category);
     });
   });
+  
+  document.getElementById('cart').addEventListener('click', showCart);
+  document.getElementById('cart-close').addEventListener('click', showCart);
   
   renderGuns();
 });
