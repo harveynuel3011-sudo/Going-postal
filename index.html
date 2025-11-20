@@ -51,7 +51,7 @@
 
   <div class="hp-wrap">
     <p class="hp-desc">
-      "Look, I just shoot the packages delivery confirmation is <em>your</em> problem.<br>
+      "Look, I just shoot the packages - delivery confirmation is <em>your</em> problem.<br>
       Browse the catalogue, pick your party favours, and nobody asks questions.<br>
       Welcome to the postal service that actually delivers."
     </p>
@@ -106,11 +106,18 @@
   <script src="guns.js"></script>
   <script>
     function enterShop(){
+  
+      document.querySelector('.hp-wrap').style.display = 'none';
+      
+
       document.body.classList.remove('homepage');   
-      document.querySelectorAll('.shop-only').forEach(el=>el.style.display=''); 
+      
+ 
       renderGuns();                                 
-      document.querySelectorAll('.filter-btn').forEach(btn=>
-        btn.addEventListener('click',()=>filterGuns(btn.dataset.category))
+      
+     
+      document.querySelectorAll('.filter-btn').forEach(btn =>
+        btn.addEventListener('click', () => filterGuns(btn.dataset.category))
       );
     }
 
